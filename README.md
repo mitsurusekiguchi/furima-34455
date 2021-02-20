@@ -15,9 +15,9 @@
 
 ### Association
 
-- has_many   :products
-- belongs_to :card
-- belongs_to :destination
+- has_many   :items
+- belongs_to :order
+
 
 ## items テーブル
 
@@ -26,32 +26,33 @@
 | name            | string   | null: false      |
 | description     | text     | null: false      |
 | category_id     | integer  | null: false      |
-| status          | integer  | null: false      |
-| shipping_cost   | integer  | null: false      |
-| shipping_area   | integer  | null: false      |
-| shipping_day    | integer  | null: false      |
+| status_id       | integer  | null: false      |
+| shipping_cost_id| integer  | null: false      |
+| shipping_area_id| integer  | null: false      |
+| shipping_day_id | integer  | null: false      |
 | price           | integer  | null: false      |
 | user            | reference| foreign_key:true |
 
 ### Association
 
 - belongs_to :user
+- has_many   :orders
 
 ## destination テーブル
 
-| Column        | Type     | Options          |
-| --------------| ------   | -----------------|
-| post_code     | string   | null: false      |
-| prefectures   | string   | null: false      |
-| city          | string   | null: false      |
-| address       | string   | null: false      |
-| building_name | string   |                  |
-| phone_number  | string   | null: false      | 
-| user          | reference| foreign_key:true |
+| Column         | Type     | Options          |
+| -------------- | ------   | -----------------|
+| post_code      | string   | null: false      |
+|shipping_area_id| integer  | null: false      |
+| city_id        | integer  | null: false      |
+| address        | string   | null: false      |
+| building_name  | string   |                  |
+| phone_number   | string   | null: false      | 
+| order          | reference| foreign_key:true |
  
 ### Association
 
-- belongs_to :user
+- belongs_to :order
 
 ## order テーブル
 
@@ -59,12 +60,13 @@
 | --------------| ------   | -----------------|
 | item          | reference| foreign_key:true | 
 | user          | reference| foreign_key:true |
- 
+| destination   | reference| foreign_key:true |
+
 ### Association
 
 - belongs_to :item
 - belongs_to :user
-
+- belongs_to :destination
 
 
 <!-- # README

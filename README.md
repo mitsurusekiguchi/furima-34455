@@ -2,16 +2,16 @@
 
 ## users テーブル
 
-| Column               | Type   | Options     |
-| ---------------------| ------ | ----------- |
-| nickname             | string | null: false |
-| email                | string | null: false |
-| password             | string | null: false |
-| last_name            | string | null: false |
-| first_name           | string | null: false |
-| last_name_reading    | string | null: false |
-| first_name_reading   | string | null: false |
-| birthday             | date   | null: false |
+| Column               | Type   | Options      |
+| ---------------------| ------ | -----------  |
+| nickname             | string | null: false  |
+| email                | string | unique: true |
+| encrypted_password   | string | null: false  |
+| last_name            | string | null: false  | 
+| first_name           | string | null: false  |
+| last_name_reading    | string | null: false  |
+| first_name_reading   | string | null: false  |
+| birthday             | date   | null: false  |
 
 ### Association
 
@@ -19,32 +19,19 @@
 - belongs_to :card
 - belongs_to :destination
 
-## products テーブル
+## items テーブル
 
 | Column          | Type     | Options          |
 | ----------------| ------   | -----------------|
 | name            | string   | null: false      |
-| description     | string   | null: false      |
-| category        | string   | null: false      |
-| status          | string   | null: false      |
-| shipping_cost   | string   | null: false      |
-| shipping_area   | string   | null: false      |
-| shipping_days   | string   | null: false      |
-| price           | date     | null: false      |
+| description     | text     | null: false      |
+| category_id     | integer  | null: false      |
+| status          | integer  | null: false      |
+| shipping_cost   | integer  | null: false      |
+| shipping_area   | integer  | null: false      |
+| shipping_day    | integer  | null: false      |
+| price           | integer  | null: false      |
 | user            | reference| foreign_key:true |
-
-### Association
-
-- belongs_to :user
-
-## cards テーブル
-
-| Column           | Type       | Options          |
-| ---------------- | -----------| -----------------|
-| card_number      | string     | null: false      |
-| expirations_date | string     | null: false      |
-| security_code    | string     | null: false      |
-| user             | reference  | foreign_key:true |
 
 ### Association
 
@@ -65,6 +52,20 @@
 ### Association
 
 - belongs_to :user
+
+## order テーブル
+
+| Column        | Type     | Options          |
+| --------------| ------   | -----------------|
+| item          | reference| foreign_key:true | 
+| user          | reference| foreign_key:true |
+ 
+### Association
+
+- belongs_to :item
+- belongs_to :user
+
+
 
 <!-- # README
 

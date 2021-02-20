@@ -21,17 +21,17 @@
 
 ## items テーブル
 
-| Column          | Type     | Options          |
-| ----------------| ------   | -----------------|
-| name            | string   | null: false      |
-| description     | text     | null: false      |
-| category_id     | integer  | null: false      |
-| status_id       | integer  | null: false      |
-| shipping_cost_id| integer  | null: false      |
-| shipping_area_id| integer  | null: false      |
-| shipping_day_id | integer  | null: false      |
-| price           | integer  | null: false      |
-| user            | reference| foreign_key:true |
+| Column          | Type      | Options          |
+| ----------------| ------    | -----------------|
+| name            | string    | null: false      |
+| description     | text      | null: false      |
+| category_id     | integer   | null: false      |
+| status_id       | integer   | null: false      |
+| shipping_cost_id| integer   | null: false      |
+| shipping_area_id| integer   | null: false      |
+| shipping_day_id | integer   | null: false      |
+| price           | integer   | null: false      |
+| user            | references| foreign_key:true |
 
 ### Association
 
@@ -56,17 +56,16 @@
 
 ## order テーブル
 
-| Column        | Type     | Options          |
-| --------------| ------   | -----------------|
-| item          | reference| foreign_key:true | 
-| user          | reference| foreign_key:true |
-| destination   | reference| foreign_key:true |
+| Column        | Type      | Options          |
+| --------------| ----------| -----------------|
+| item          | references| foreign_key:true | 
+| user          | references| foreign_key:true |
 
 ### Association
 
 - belongs_to :item
 - belongs_to :user
-- belongs_to :destination
+- has_one :destination
 
 
 <!-- # README

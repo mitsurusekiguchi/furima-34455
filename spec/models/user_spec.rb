@@ -58,24 +58,27 @@ RSpec.describe User, type: :model do
     it 'パスワードは、半角英数字混合での入力が必須であること（半角英数字が混合されていれば、登録が可能なこと）' do
       @user.password = 'aaaaaa'
       @user.valid?
-      expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+      expect(@user.errors.full_messages).to include("Password is invalid")
     end
     it 'パスワードは数字のみでは登録できないこと' do
       @user.password = '123456'
       @user.valid?
-      expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+      expect(@user.errors.full_messages).to include("Password is invalid")
     end
     it 'パスワードは全角では登録できないこと' do
       @user.password = 'ａａａａａａ'
       @user.valid?
-      binding.pry
-      expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+      expect(@user.errors.full_messages).to include("Password is invalid")
     end
-    it 'ユーザー本名は、名字、名前がないと登録できない' do
+    it 'ユーザー本名は、名字がないと登録できない' do
       @user.last_name = ''
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Last name can't be blank")
+    end
+    it 'ユーザー本名は、名前がないと登録できない' do
       @user.first_name = ''
       @user.valid?
-      expect(@user.errors.full_messages).to include("Last name can't be blank", "First name can't be blank")
+      expect(@user.errors.full_messages).to include("First name can't be blank")
     end
     it 'ユーザー本名は、全角（漢字・ひらがな・カタカナ）での入力が必須であること' do
       @user.first_name = 'yamada'
@@ -93,6 +96,12 @@ RSpec.describe User, type: :model do
     it 'ユーザー本名のフリガナは、全角（カタカナ）での入力が必須であること' do
       @user.first_name_reading = '山田'
       @user.last_name_reading = '太郎'
+      @user.valid?
+      expect(@user.errors.full_messages).to include('Last name reading is invalid', 'First name reading is invalid')
+    end
+    it 'ユーザー本名のフリガナは、半角（カタカナ）での入力が必須であること' do
+      @user.first_name_reading = 'ﾔﾏﾀﾞ'
+      @user.last_name_reading = 'ﾀﾛｳ'
       @user.valid?
       expect(@user.errors.full_messages).to include('Last name reading is invalid', 'First name reading is invalid')
     end

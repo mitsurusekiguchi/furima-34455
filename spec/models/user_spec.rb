@@ -8,7 +8,6 @@ RSpec.describe User, type: :model do
   describe 'ユーザー登録' do
     context 'ユーザー登録できるとき'
     it 'ニックネーム、メールアドレス、パスワード、パスワード（確認）、お名前（全角）、お名前カナ（全角）、生年月日が存在すれば登録できる' do
-      @user = FactoryBot.build(:user)
       expect(@user).to be_valid
     end
     it 'パスワードは、6文字以上での入力で登録できる' do

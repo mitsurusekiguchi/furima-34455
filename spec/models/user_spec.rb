@@ -80,30 +80,45 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include("First name can't be blank")
     end
-    it 'ユーザー本名は、全角（漢字・ひらがな・カタカナ）での入力が必須であること' do
-      @user.first_name = 'yamada'
-      @user.last_name = 'tarou'
+    it 'ユーザー本名の名字は全角（漢字・ひらがな・カタカナ）での入力が必須であること' do
+      @user.last_name = 'yamada'
       @user.valid?
-      expect(@user.errors.full_messages).to include('Last name is invalid', 'First name is invalid')
+      expect(@user.errors.full_messages).to include('Last name is invalid')
     end
-    it 'ユーザー本名のフリガナは、名字と名前がそれぞれ必須であること' do
-      @user.first_name_reading = ''
+    it 'ユーザー本名の名前は全角（漢字・ひらがな・カタカナ）での入力が必須であること' do
+      @user.first_name = 'tarou'
+      @user.valid?
+      expect(@user.errors.full_messages).to include('First name is invalid')
+    end
+    it 'ユーザー本名のフリガナは、名字が必須であること' do
       @user.last_name_reading = ''
       @user.valid?
-      expect(@user.errors.full_messages).to include("Last name reading can't be blank",
-                                                    "First name reading can't be blank")
+      expect(@user.errors.full_messages).to include("Last name reading can't be blank")
     end
-    it 'ユーザー本名のフリガナは、全角（カタカナ）での入力が必須であること' do
-      @user.first_name_reading = '山田'
-      @user.last_name_reading = '太郎'
+    it 'ユーザー本名のフリガナは、名前が必須であること' do
+      @user.first_name_reading = ''
       @user.valid?
-      expect(@user.errors.full_messages).to include('Last name reading is invalid', 'First name reading is invalid')
+      expect(@user.errors.full_messages).to include("First name reading can't be blank")
     end
-    it 'ユーザー本名のフリガナは、半角（カタカナ）での入力が必須であること' do
-      @user.first_name_reading = 'ﾔﾏﾀﾞ'
-      @user.last_name_reading = 'ﾀﾛｳ'
+    it 'ユーザー本名の名字のフリガナは、全角（カタカナ）での入力が必須であること' do
+      @user.last_name_reading = '山田'
       @user.valid?
-      expect(@user.errors.full_messages).to include('Last name reading is invalid', 'First name reading is invalid')
+      expect(@user.errors.full_messages).to include('Last name reading is invalid')
+    end
+    it 'ユーザー本名の名前のフリガナは、全角（カタカナ）での入力が必須であること' do
+      @user.first_name_reading = '太郎'
+      @user.valid?
+      expect(@user.errors.full_messages).to include('First name reading is invalid')
+    end
+    it 'ユーザー本名の名字のフリガナは、半角（カタカナ）での入力が必須であること' do
+      @user.last_name_reading = 'ﾔﾏﾀﾞ'
+      @user.valid?
+      expect(@user.errors.full_messages).to include('Last name reading is invalid')
+    end
+    it 'ユーザー本名の名前のフリガナは、半角（カタカナ）での入力が必須であること' do
+      @user.first_name_reading = 'ﾀﾛｳ'
+      @user.valid?
+      expect(@user.errors.full_messages).to include('First name reading is invalid')
     end
     it '生年月日が必須であること' do
       @user.birthday = ''

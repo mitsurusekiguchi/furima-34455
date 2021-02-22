@@ -5,6 +5,9 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
+    unless user_signed_in? && current_user.id == @item.user_id
+      redirect_to action: :index
+    end
   end
 
   def create

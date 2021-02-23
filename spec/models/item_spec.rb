@@ -36,27 +36,27 @@ RSpec.describe Item, type: :model do
     it 'カテゴリーの情報が空だと登録できない' do
       @item.category_id = ''
       @item.valid?
-      expect(@item.errors.full_messages).to include("Category can't be blank", "Category is not a number")
+      expect(@item.errors.full_messages).to include("Category can't be blank")
     end
     it '商品の状態についての情報が空だと登録できない' do
       @item.status_id = ''
       @item.valid?
-      expect(@item.errors.full_messages).to include("Status can't be blank", "Status is not a number")
+      expect(@item.errors.full_messages).to include("Status can't be blank")
     end
     it '配送料の負担についての情報が空だと登録できない' do
       @item.shipping_cost_id = ''
       @item.valid?
-      expect(@item.errors.full_messages).to include("Shipping cost can't be blank", "Shipping cost is not a number")
+      expect(@item.errors.full_messages).to include("Shipping cost can't be blank")
     end
     it '発送元の地域についての情報が空だと登録できない' do
       @item.shipping_area_id = ''
       @item.valid?
-      expect(@item.errors.full_messages).to include("Shipping area can't be blank", "Shipping area is not a number")
+      expect(@item.errors.full_messages).to include("Shipping area can't be blank")
     end
     it '発送までの日数についての情報が空だと登録できない' do
       @item.shipping_day_id = ''
       @item.valid?
-      expect(@item.errors.full_messages).to include("Shipping day can't be blank", "Shipping day is not a number")
+      expect(@item.errors.full_messages).to include("Shipping day can't be blank")
     end
     it '販売価格についての情報が空だと登録できない' do
       @item.price = ''

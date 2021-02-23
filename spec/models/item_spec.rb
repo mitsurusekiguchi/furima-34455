@@ -10,14 +10,12 @@ RSpec.describe Item, type: :model do
       expect(@item).to be_valid
     end
     it '販売価格は、¥300~¥9,999,999の間のみ保存可能であること' do
-      @item.price = 300 
+      @item.price = 300
       expect(@item).to be_valid
     end
-    
 
-    context '出品登録ができない' 
-    
-    
+    context '出品登録ができない'
+
     it '商品画像を1枚つけないと登録できない' do
       @item.image = nil
       @item.valid?
@@ -26,7 +24,7 @@ RSpec.describe Item, type: :model do
     it '商品名が空だと登録できない' do
       @item.name = ''
       @item.valid?
-      expect(@item.errors.full_messages).to include("Name can't be blank")      
+      expect(@item.errors.full_messages).to include("Name can't be blank")
     end
     it '商品の説明が空だと登録できない' do
       @item.description = ''
@@ -62,57 +60,57 @@ RSpec.describe Item, type: :model do
       @item.price = ''
       @item.valid?
       expect(@item.errors.full_messages).to include
-      ("Price is not included in the list")
+      'Price is not included in the list'
     end
     it 'カテゴリーは1を選択している場合登録できない' do
       @item.category_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include("Category must be other than 1")
+      expect(@item.errors.full_messages).to include('Category must be other than 1')
     end
     it '商品の状態は1を選択している場合登録できない' do
       @item.status_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include("Status must be other than 1")
+      expect(@item.errors.full_messages).to include('Status must be other than 1')
     end
     it '配送料については1を選択している場合登録できない' do
       @item.shipping_cost_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include("Shipping cost must be other than 1")
+      expect(@item.errors.full_messages).to include('Shipping cost must be other than 1')
     end
     it '発送元の地域は1を選択している場合登録できない' do
       @item.shipping_area_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include("Shipping area must be other than 1")
+      expect(@item.errors.full_messages).to include('Shipping area must be other than 1')
     end
     it '発送までの日数は1を選択している場合登録できない' do
       @item.shipping_day_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include("Shipping day must be other than 1")
+      expect(@item.errors.full_messages).to include('Shipping day must be other than 1')
     end
     it '販売価格は、¥300以下だと登録できない' do
       @item.price = 299
       @item.valid?
-      expect(@item.errors.full_messages).to include("Price is not included in the list")
+      expect(@item.errors.full_messages).to include('Price is not included in the list')
     end
     it '販売価格は全角数字だと登録できない' do
       @item.price = '３００'
       @item.valid?
-      expect(@item.errors.full_messages).to include("Price is not included in the list")
+      expect(@item.errors.full_messages).to include('Price is not included in the list')
     end
-      it '半角英数混合では登録できないこと' do
-        @item.price = '299aaa'
+    it '半角英数混合では登録できないこと' do
+      @item.price = '299aaa'
       @item.valid?
-      expect(@item.errors.full_messages).to include("Price is not included in the list")
-      end
+      expect(@item.errors.full_messages).to include('Price is not included in the list')
+    end
     it '半角英語だけでは登録できないこと' do
-        @item.price = 'aaaaa'
+      @item.price = 'aaaaa'
       @item.valid?
-      expect(@item.errors.full_messages).to include("Price is not included in the list")
+      expect(@item.errors.full_messages).to include('Price is not included in the list')
     end
     it '10000000円以上では登録できない' do
-        @item.price = 10000000
+      @item.price = 10_000_000
       @item.valid?
-      expect(@item.errors.full_messages).to include("Price is not included in the list")
+      expect(@item.errors.full_messages).to include('Price is not included in the list')
     end
-   end
   end
+end

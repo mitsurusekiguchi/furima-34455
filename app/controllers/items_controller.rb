@@ -1,12 +1,12 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, except: [:index,:show]
+  before_action :authenticate_user!, except: [:index, :show]
   def index
-    @item = Item.all.order(created_at: "DESC")
+    @item = Item.all.order(created_at: 'DESC')
   end
 
   def new
     @item = Item.new
-    end
+  end
 
   def create
     @item = Item.new(item_params)
@@ -14,16 +14,17 @@ class ItemsController < ApplicationController
       redirect_to root_path
     else
       render :new
+    end
   end
-end
 
-def show
-  @item = Item.find(params[:id])
-end
-  
+  def show
+    @item = Item.find(params[:id])
+  end
+
   private
 
   def item_params
-    params.require(:item).permit(:name, :description, :category_id, :status_id, :shipping_cost_id, :shipping_area_id, :shipping_day_id, :price, :image).merge(user_id: current_user.id)
- end
+    params.require(:item).permit(:name, :description, :category_id, :status_id, :shipping_cost_id, :shipping_area_id,
+                                 :shipping_day_id, :price, :image).merge(user_id: current_user.id)
+  end
 end

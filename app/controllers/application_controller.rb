@@ -9,9 +9,10 @@ class ApplicationController < ActionController::Base
                                       keys: [:nickname, :last_name, :first_name, :last_name_reading, :first_name_reading,
                                              :birthday])
   end
+
   def basic_auth
-    authenticate_or_request_with_http_basic do |username, password|   
-      username == 'furima' && password == '34455'                             
-  end  
- end
+    authenticate_or_request_with_http_basic do |username, password|
+      username == 'furima' && password == '34455'
+    end
+  end
 end

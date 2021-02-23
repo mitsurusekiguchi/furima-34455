@@ -10,7 +10,7 @@ RSpec.describe Item, type: :model do
       expect(@item).to be_valid
     end
     it '販売価格は、¥300~¥9,999,999の間のみ保存可能であること' do
-      @item.price = '300' 
+      @item.price = 300 
       expect(@item).to be_valid
     end
     

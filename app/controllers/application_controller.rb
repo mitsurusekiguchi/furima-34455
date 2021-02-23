@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_action :basic_auth
+  # before_action :basic_auth
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   private
@@ -10,9 +10,9 @@ class ApplicationController < ActionController::Base
                                              :birthday])
   end
 
-  def basic_auth
-    authenticate_or_request_with_http_basic do |username, password|
-      username == 'furima' && password == '34455'
-    end
+  # def basic_auth
+  #   authenticate_or_request_with_http_basic do |username, password|
+  #     username == 'furima' && password == '34455'
+  #   end
   end
 end

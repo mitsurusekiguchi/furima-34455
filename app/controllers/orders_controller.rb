@@ -9,10 +9,7 @@ class OrdersController < ApplicationController
       redirect_to  root_path
   end
 end
-  # 修正箇所↓
-  def new
-  end
-  # 修正箇所↓
+
   def create
     @order_destination = OrderDestination.new(order_params)
     if @order_destination.valid?
@@ -38,7 +35,7 @@ end
         currency: 'jpy'
       )
   end
-  # 修正箇所↓
+
   def set_index
     @item = Item.find(params[:item_id])
   end

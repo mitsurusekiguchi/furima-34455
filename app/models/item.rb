@@ -10,7 +10,7 @@ class Item < ApplicationRecord
   has_many_attached :images
 
   with_options presence: true do
-    validates :image
+    validates :images
     validates :name
     validates :description
     validates_inclusion_of :price, in: 300..9_999_999, format: { with: /([0-9].*[0-9])/ }

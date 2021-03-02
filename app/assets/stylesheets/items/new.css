@@ -79,6 +79,10 @@
   flex-wrap: wrap;
   padding: 2vh 0;
 }
+img{
+  max-width:100%;
+  height:auto;
+}
 
 .click-upload {
   margin: 15px 0;

@@ -1,0 +1,31 @@
+<%= render "shared/second-header"%>
+<%= form_for(current_user) do |f| %>
+<div class="form-wrap">
+  <div class="account-header">
+    <h1 class="form-header-text">
+    マイページ
+    </h1>
+  </div>
+  <div class="account-header">
+    <h2 class="form-header-text">
+    ユーザー情報
+    </h2>
+  </div>
+  <div class="form-group">
+    <div class="form-text-wrap">
+      <label class="form-text">ニックネーム</label>
+    </div>
+      <%= f.text_field :nickname, class:'input-default', autofocus: true %>
+  </div>
+  <div class="form-group">
+    <div class="form-text-wrap">
+      <label class="form-text">Eメール</label>
+    </div>
+      <%= f.email_field :email, class:"input-default" %>
+  </div>
+  <div class='update-btn'>
+    <%= f.submit "更新する",class:"update-red-btn"%>
+  </div>
+</div>
+<% end %>
+<%= render "shared/second-footer"%>

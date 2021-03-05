@@ -9,7 +9,4 @@ class UsersController < ApplicationController
       customer = Payjp::Customer.retrieve(card.customer_token)
       @card = customer.cards.first
     end
-
-  #   def update
-  #  end
   end

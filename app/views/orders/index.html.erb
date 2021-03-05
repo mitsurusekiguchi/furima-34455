@@ -14,9 +14,11 @@
         <h2 class='buy-item-text'>
           <%= @item.name %>
         </h2>
-        <div class='buy-item-price'>
+        <div class='buy-item-price-content'>
           <p class='item-price-text'>¥<%= @item.price %></p>
+          <div class='buy-itemprice'>
           <p class='item-price-sub-text'><%= @item.shipping_cost.name %></p>
+          </div>
         </div>
       </div>
     </div>
@@ -34,9 +36,6 @@
     <%# /支払額の表示 %>
 
     <%# カード情報の入力 %>
-    <%# <% if @card == nil %>
-   
-    <%# <% if current_user.id == @card.user_id %> 
     <div class='credit-card-form'>
       <h1 class='info-input-haedline'>
         クレジットカード情報入力
@@ -44,7 +43,6 @@
       <div class="form-group">
         <div class='form-text-wrap'>
           <label class="form-text">カード情報</label>
-          <span class="indispensable">必須</span>
         </div>
         <%= "**** **** **** " + @card[:last4] %>
         <div class='available-card'>
@@ -57,7 +55,6 @@
       <div class="form-group">
         <div class='form-text-wrap'>
           <label class="form-text">有効期限</label>
-          <span class="indispensable">必須</span>
         </div>
         <div class='input-expiration-date-wrap'>
           <%= @card[:exp_month] %>
@@ -66,16 +63,7 @@
           <p>年</p>
         </div>
       </div>
-      <%# <div class="form-group">
-        <div class='form-text-wrap'>
-          <label class="form-text">セキュリティコード</label>
-          <span class="indispensable">必須</span>
-        </div>
-        <%= f.text_field 'cvc',class:"input-default", id:"card-cvc", placeholder:"カード背面4桁もしくは3桁の番号", maxlength:"4" %>
-      <%# </div> %>
     </div>
-  <%# <% end %>
-  <%# <% end %> 
     <%# /カード情報の入力 %>
     
     <%= form_with model: @order_destination, url: item_orders_path, class: 'transaction-form-wrap',local: true do |f| %>

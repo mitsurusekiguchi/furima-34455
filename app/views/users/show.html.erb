@@ -5,8 +5,34 @@
     <h1 class="form-header-text">
     マイページ
     </h1>
-  </div>
-  <div class="account-header">
+    <div class='credit-card-form'>
+      <h1 class='info-input-haedline'>
+        クレジットカード登録情報
+      </h1>
+      <div class="form-group">
+        <div class='form-text-wrap'>
+          <label class="form-text">カード番号</label>
+        </div>
+        <%= "**** **** **** " + @card[:last4] %>
+        <div class='available-card'>
+          <%= image_tag 'card-visa.gif', class: 'card-logo'%>
+          <%= image_tag 'card-mastercard.gif', class: 'card-logo'%>
+          <%= image_tag 'card-jcb.gif', class: 'card-logo'%>
+          <%= image_tag 'card-amex.gif', class: 'card-logo'%>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class='form-text-wrap'>
+          <label class="form-text">有効期限</label>
+        </div>
+        <div class='input-expiration-date-wrap'>
+          <%= @card[:exp_month] %>
+          <p>月</p>
+          <%= @card[:exp_year] %>
+          <p>年</p>
+        </div>
+      </div>
+  <%# <div class="account-header">
     <h2 class="form-header-text">
     ユーザー情報
     </h2>
@@ -16,15 +42,15 @@
       <label class="form-text">ニックネーム</label>
     </div>
       <%= f.text_field :nickname, class:'input-default', autofocus: true %>
-  </div>
+  <%# </div>
   <div class="form-group">
     <div class="form-text-wrap">
       <label class="form-text">Eメール</label>
     </div>
       <%= f.email_field :email, class:"input-default" %>
-  </div>
+  <%# </div> %>
   <div class='update-btn'>
-    <%= f.submit "更新する",class:"update-red-btn"%>
+    <%= link_to "トップページに戻る", root_path,class:"update-red-btn"%>
   </div>
 </div>
 <% end %>

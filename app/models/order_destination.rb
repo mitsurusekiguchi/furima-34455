@@ -7,9 +7,8 @@ class OrderDestination
     validates :item_id
     validates :city
     validates :address
-    validates :token
+    # validates :token カード情報を登録出来るようにしたことで不要になる。
     validates :post_code,format: {with: /\A[0-9]{3}-[0-9]{4}\z/}
-  # , message: "is invalid. Include hyphen(-)"
   with_options numericality: { other_than: 1 } do
       validates :shipping_area_id
   with_options  format: {with: /\A\d{10,11}\z/} do

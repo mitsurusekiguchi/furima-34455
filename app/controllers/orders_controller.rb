@@ -4,6 +4,13 @@ class OrdersController < ApplicationController
   before_action :sold_out_item, only: [:index]
 
   def index
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"] # 環境変数を読み込む
+    card = Card.find_by(user_id: current_user.id) # ユーザーのid情報を元に、カード情報を取得
+
+    redirect_to new_card_path and return unless card.present?
+    customer =Payjp::Customer.retrieve(card.customer_token)
+    @card = customer.cards.first
+
     @order_destination = OrderDestination.new
     if current_user == @item.user
       redirect_to  root_path
@@ -11,30 +18,40 @@ class OrdersController < ApplicationController
 end
 
   def create
-    @order_destination = OrderDestination.new(order_params)
-    if @order_destination.valid?
-      pay_item
-      @order_destination.save
-      redirect_to root_path
-    else
-      render :index
-    end
-  end
+    redirect_to new_card_path and return unless current_user.card.present?
 
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"] # 環境変数を読み込む
+    customer_token = current_user.card.customer_token # ログインしているユーザーの顧客トークンを定義
+    @order_destination = OrderDestination.new(order_params)
+
+    if @order_destination.valid?
+      
+    Payjp::Charge.create(
+     amount: @item.price,
+     customer: customer_token,
+     currency: 'jpy' 
+     )
+     @order_destination.save
+     redirect_to root_path
+   else
+     render :index
+   end
+ end
+  
   private
 
   def order_params
     params.require(:order_destination).permit(:post_code, :shipping_area_id, :city, :address, :building_name, :phone_number).merge(user_id: current_user.id, item_id: @item.id, token: params[:token])
   end
 
-  def pay_item
-      Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
-      Payjp::Charge.create(
-        amount: @item.price,
-        card: order_params[:token],
-        currency: 'jpy'
-      )
-  end
+  # def pay_item
+  #     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+  #     Payjp::Charge.create(
+  #       amount: @item.price,
+  #       card: order_params[:token],
+  #       currency: 'jpy'
+  #     )
+  # end
 
   def set_index
     @item = Item.find(params[:item_id])

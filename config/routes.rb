@@ -5,8 +5,8 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show, :update]
   resources :cards, only: [:new, :create]
-  resources :messages, only: [:new, :create]
   resources :items do
     resources :orders, only: [:index, :create]
+    resources :messages, only: [:create]
   end
 end

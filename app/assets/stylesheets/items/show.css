@@ -142,7 +142,7 @@
 /* /商品の概要 */
 
 .comment-box {
-  width: 40vw;
+  width: 80vw;
   background-color: #fff;
   margin: 5vh 0;
   text-align: center;
@@ -160,7 +160,7 @@
   padding: 10px;
   font-size: 14px;
   margin: 10px 0px;
-  text-align: left;
+  text-align: center;
 }
 
 .comment-btn {
@@ -205,3 +205,10 @@
   font-weight: bold;
   font-size: 23px;
 }
+/* .reverse-message-form {
+  width: 40vw;
+  background-color: #fff;
+  margin: 5vh 0;
+  display: flex;
+
+} */

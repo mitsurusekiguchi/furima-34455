@@ -21,6 +21,8 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @message = Message.new
+    @messages = @item.messages
   end
 
   def edit
@@ -52,7 +54,7 @@ class ItemsController < ApplicationController
       :shipping_area_id,
       :shipping_day_id,
       :price,
-      images: []
+      images: [],
     ).merge(user_id: current_user.id)
   end
   def set_index

@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :order_destination do
-    token {'tokenusertoken'} 
+    token { 'tokenusertoken' }
     post_code { '123-4567' }
     shipping_area_id { 2 }
     city { '渋谷区神宮前' }
@@ -9,4 +9,3 @@ FactoryBot.define do
     phone_number { '08012345678' }
   end
 end
-

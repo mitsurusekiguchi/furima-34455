@@ -19,48 +19,48 @@ RSpec.describe Item, type: :model do
     it '商品画像を1枚つけないと登録できない' do
       @item.images = nil
       @item.valid?
-      expect(@item.errors.full_messages).to include("画像を入力してください")
+      expect(@item.errors.full_messages).to include('画像を入力してください')
     end
     it '商品名が空だと登録できない' do
       @item.name = ''
       @item.valid?
-      expect(@item.errors.full_messages).to include("名前を入力してください")
+      expect(@item.errors.full_messages).to include('名前を入力してください')
     end
     it '商品の説明が空だと登録できない' do
       @item.description = ''
       @item.valid?
-      expect(@item.errors.full_messages).to include("商品の説明を入力してください")
+      expect(@item.errors.full_messages).to include('商品の説明を入力してください')
     end
     it 'カテゴリーの情報が空だと登録できない' do
       @item.category_id = ''
       @item.valid?
-      expect(@item.errors.full_messages).to include("カテゴリーを入力してください")
+      expect(@item.errors.full_messages).to include('カテゴリーを入力してください')
     end
     it '商品の状態についての情報が空だと登録できない' do
       @item.status_id = ''
       @item.valid?
-      expect(@item.errors.full_messages).to include("商品の状態を入力してください")
+      expect(@item.errors.full_messages).to include('商品の状態を入力してください')
     end
     it '配送料の負担についての情報が空だと登録できない' do
       @item.shipping_cost_id = ''
       @item.valid?
-      expect(@item.errors.full_messages).to include("配送料の負担を入力してください")
+      expect(@item.errors.full_messages).to include('配送料の負担を入力してください')
     end
     it '発送元の地域についての情報が空だと登録できない' do
       @item.shipping_area_id = ''
       @item.valid?
-      expect(@item.errors.full_messages).to include("発送元の地域を入力してください")
+      expect(@item.errors.full_messages).to include('発送元の地域を入力してください')
     end
     it '発送までの日数についての情報が空だと登録できない' do
       @item.shipping_day_id = ''
       @item.valid?
-      expect(@item.errors.full_messages).to include("発送までの日数を入力してください")
+      expect(@item.errors.full_messages).to include('発送までの日数を入力してください')
     end
     it '販売価格についての情報が空だと登録できない' do
       @item.price = ''
       @item.valid?
       expect(@item.errors.full_messages).to include
-      ('金額は一覧にありません')
+      '金額は一覧にありません'
     end
     it 'カテゴリーは1を選択している場合登録できない' do
       @item.category_id = 1

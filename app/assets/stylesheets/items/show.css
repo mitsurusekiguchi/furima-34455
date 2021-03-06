@@ -205,10 +205,6 @@
   font-weight: bold;
   font-size: 23px;
 }
-/* .reverse-message-form {
-  width: 40vw;
-  background-color: #fff;
-  margin: 5vh 0;
-  display: flex;
-
-} */
+p {
+  text-align: left;
+}

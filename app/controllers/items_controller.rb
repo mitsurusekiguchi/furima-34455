@@ -37,9 +37,7 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    if @item.destroy
-      redirect_to root_path
-    end
+    redirect_to root_path if @item.destroy
   end
 
   private
@@ -54,16 +52,15 @@ class ItemsController < ApplicationController
       :shipping_area_id,
       :shipping_day_id,
       :price,
-      images: [],
+      images: []
     ).merge(user_id: current_user.id)
   end
+
   def set_index
     @item = Item.find(params[:id])
   end
 
   def move_to_index
-    if current_user != @item.user || @item.order.present?
-      redirect_to action: :index
-    end
+    redirect_to action: :index if current_user != @item.user || @item.order.present?
   end
 end

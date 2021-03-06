@@ -91,13 +91,10 @@
         <%= f.text_area :text, class:"comment-text" %>
         <%= f.submit class:"comment-btn" %>
       <% end %>
+      <h4>＜コメント一覧＞</h4>
     <div class="reverse-comments" id='messages'>
-      <h4><コメント一覧></h4>
         <% @messages.reverse_each do |message| %>
-          <p>
-            <strong><%= link_to message.user.nickname %>:</strong>
-            <%= message.text %>
-          </p>
+            <p><%= current_user.nickname %>さんのコメント：<%= message.text %></p>
         <% end %>
     </div>
   <%# <div class="links">

@@ -5,17 +5,11 @@ class OrdersController < ApplicationController
   before_action :card_info, only: [:index, :create]
 
   def index
-    Payjp.api_key = ENV['PAYJP_SECRET_KEY'] # 環境変数を読み込む
-    card = Card.find_by(user_id: current_user.id) # ユーザーのid情報を元に、カード情報を取得
-    customer = Payjp::Customer.retrieve(card.customer_token)
-    @card = customer.cards.first
-
     @order_destination = OrderDestination.new
     redirect_to root_path if current_user == @item.user
   end
 
   def create
-    Payjp.api_key = ENV['PAYJP_SECRET_KEY'] # 環境変数を読み込む
     customer_token = current_user.card.customer_token # ログインしているユーザーの顧客トークンを定義
     @order_destination = OrderDestination.new(order_params)
 
@@ -50,5 +44,9 @@ class OrdersController < ApplicationController
 
   def card_info
     redirect_to new_card_path and return unless current_user.card.present?
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY'] # 環境変数を読み込む
+    card = Card.find_by(user_id: current_user.id) # ユーザーのid情報を元に、カード情報を取得
+    customer = Payjp::Customer.retrieve(card.customer_token)
+    @card = customer.cards.first
   end
 end

@@ -89,22 +89,16 @@
     </p>
       <%= form_with model:[@item,@message], local: true do |f| %>
         <%= f.text_area :text, class:"comment-text" %>
-        <%= f.submit class:"comment-btn" %>
+        <% if user_signed_in? %>
+          <%= f.submit class:"comment-btn" %>
+        <% end %>
       <% end %>
       <h4>＜コメント一覧＞</h4>
     <div class="reverse-comments" id='messages'>
         <% @messages.reverse_each do |message| %>
-            <p><%= current_user.nickname %>さんのコメント：<%= message.text %></p>
+            <p>コメント：<%= message.text %></p>
         <% end %>
     </div>
-  <%# <div class="links">
-    <a href="#" class="change-item-btn">
-      ＜ 前の商品
-    </a>
-    <a href="#" class="change-item-btn">
-      後ろの商品 ＞
-    </a>
-  </div> %>
   <a href="#" class="another-item"><%= @item.category.name %>をもっと見る</a>
 </div>
 

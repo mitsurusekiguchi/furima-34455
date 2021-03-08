@@ -17,6 +17,8 @@
 
 - has_many   :items
 - has_many   :orders
+- has_many   :messages
+- has_one    :card
 
 
 ## items テーブル
@@ -36,7 +38,8 @@
 ### Association
 
 - belongs_to :user
-- has_one   :order
+- has_one    :order
+_ has_many   :messages
 
 ## destinations テーブル
 
@@ -79,7 +82,7 @@
 
 - belongs_to :user
 
-## comments テーブル
+## messages テーブル
 
 | Column          | Type      | Options          |
 | ----------------| ----------| -----------------|

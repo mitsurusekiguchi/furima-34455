@@ -7,7 +7,7 @@
 | nickname             | string | null: false               |
 | email                | string | null: false, unique: true |
 | encrypted_password   | string | null: false               |
-| last_name            | string | null: false               | 
+| last_name            | string | null: false               |
 | first_name           | string | null: false               |
 | last_name_reading    | string | null: false               |
 | first_name_reading   | string | null: false               |
@@ -47,9 +47,9 @@
 | city           | string    | null: false      |
 | address        | string    | null: false      |
 | building_name  | string    |                  |
-| phone_number   | string    | null: false      | 
+| phone_number   | string    | null: false      |
 | order          | references| foreign_key:true |
- 
+
 ### Association
 
 - belongs_to :order
@@ -58,7 +58,7 @@
 
 | Column        | Type      | Options          |
 | --------------| ----------| -----------------|
-| item          | references| foreign_key:true | 
+| item          | references| foreign_key:true |
 | user          | references| foreign_key:true |
 
 ### Association
@@ -67,6 +67,30 @@
 - belongs_to :user
 - has_one :destination
 
+## cards テーブル
+
+| Column          | Type      | Options          |
+| ----------------| ----------| -----------------|
+| card_token      | t.string  | null: false      |
+| customer_token  | t.string  | null: false      |
+| user            | references| foreign_key:true |
+
+### Association
+
+- belongs_to :user
+
+## comments テーブル
+
+| Column          | Type      | Options          |
+| ----------------| ----------| -----------------|
+| text            | t.text    | null: false      |
+| user            | references| foreign_key:true |
+| item            | references| foreign_key:true |
+
+### Association
+
+- belongs_to :user
+- belongs_to :item
 
 <!-- # README
 

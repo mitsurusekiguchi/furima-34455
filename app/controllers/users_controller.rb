@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!
   def show
     # ログインしているユーザーに紐付くカード情報を取得
     Payjp.api_key = ENV['PAYJP_SECRET_KEY']

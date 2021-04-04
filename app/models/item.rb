@@ -6,7 +6,7 @@ class Item < ApplicationRecord
   belongs_to :shipping_area
   belongs_to :shipping_day
   belongs_to :user
-  has_many :messages
+  has_many :messages, dependent: :destroy
   has_one :order
   has_many_attached :images
 

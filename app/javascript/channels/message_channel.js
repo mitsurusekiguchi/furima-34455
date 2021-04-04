@@ -15,5 +15,7 @@ consumer.subscriptions.create("MessageChannel", {
     const newMessage = document.getElementById('message_text');
     messages.insertAdjacentHTML('afterbegin', html);
     newMessage.value='';
+    const inputElement = document.querySelector('input[name="commit"]');
+      inputElement.disabled = false;
   }
 });

@@ -74,8 +74,8 @@ _ has_many   :messages
 
 | Column          | Type      | Options          |
 | ----------------| ----------| -----------------|
-| card_token      | t.string  | null: false      |
-| customer_token  | t.string  | null: false      |
+| card_token      | string    | null: false      |
+| customer_token  | string    | null: false      |
 | user            | references| foreign_key:true |
 
 ### Association
